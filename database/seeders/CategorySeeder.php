@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin\Product\Category;
-use App\Models\Admin\Product\SubCategory;
+use App\Models\Admin\Category\Category;
+use App\Models\Admin\Category\SubCategory;
 use Illuminate\Database\Seeder;
 
 
@@ -17,20 +17,20 @@ class CategorySeeder extends Seeder
     {
 
         $cats = ['Men','Women','Babies','Home Appliances'];
-        $sub = [
-            ['category_id'=>1,'name'=>'Shooe'],
-            ['category_id'=>1,'name'=>'belt'],
-            ['category_id'=>1,'name'=>'Money bag'],
-            ['category_id'=>2,'name'=>'Bag'],
-            ['category_id'=>2,'name'=>'Ladies parts bag'],
-            ['category_id'=>2,'name'=>'Ladies Shooe'],
-            ['category_id'=>2,'name'=>'Wallet'],
-            ['category_id'=>2,'name'=>'Jacket'],
-            ['category_id'=>3,'name'=>'Boots'],
-            ['category_id'=>3,'name'=>'Globes'],
-            ['category_id'=>4,'name'=>'Rack cover'],
-            ['category_id'=>4,'name'=>'Mat']
-        ];
+        // $sub = [
+        //     ['category_id'=>1,'name'=>'Shooe'],
+        //     ['category_id'=>1,'name'=>'belt'],
+        //     ['category_id'=>1,'name'=>'Money bag'],
+        //     ['category_id'=>2,'name'=>'Bag'],
+        //     ['category_id'=>2,'name'=>'Ladies parts bag'],
+        //     ['category_id'=>2,'name'=>'Ladies Shooe'],
+        //     ['category_id'=>2,'name'=>'Wallet'],
+        //     ['category_id'=>2,'name'=>'Jacket'],
+        //     ['category_id'=>3,'name'=>'Boots'],
+        //     ['category_id'=>3,'name'=>'Globes'],
+        //     ['category_id'=>4,'name'=>'Rack cover'],
+        //     ['category_id'=>4,'name'=>'Mat']
+        // ];
 
         foreach($cats as $cat){
             Category::create([

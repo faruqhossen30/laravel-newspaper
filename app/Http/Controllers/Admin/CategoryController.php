@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Product\Category;
+use App\Models\Admin\Category\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Image ;
 class CategoryController extends Controller
 {
@@ -16,8 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categoris = Category::latest()->paginate(10);
-        return view('admin.product.category.index', compact('categoris'));
+        $categories = Category::latest()->paginate(10);
+        return view('admin.category.index', compact('categories'));
     }
 
     /**
@@ -25,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.product.category.create');
+        return view('admin.category.create');
     }
 
     /**
@@ -39,20 +40,16 @@ class CategoryController extends Controller
             'name'=>'required'
         ]);
 
-
-        $thumbnailname = null;
-        if ($request->file('thumbnail')) {
-            $imagethumbnail = $request->file('thumbnail');
-            $extension = $imagethumbnail->getClientOriginalExtension();
-            $thumbnailname = Str::uuid() . '.' . $extension;
-            Image::make($imagethumbnail)->save('uploads/category/' . $thumbnailname);
-        }
         $data=[
             'name'=> $request->name,
             'slug'=> Str::slug($request->name),
             'author_id'=> Auth::user()->id,
-            'thumbnail'=> $thumbnailname,
         ];
+
+        if($request->file('thumbnail')){
+            $file_name = $request->file('thumbnail')->store('thumbnail/category');
+            $data['thumbnail'] = $file_name;
+        }
 
         Category::create($data);
 
@@ -74,7 +71,7 @@ class CategoryController extends Controller
     {
         $category = Category::where('id', $id)->first();
         // return $category;
-        return view('admin.product.category.edit', compact('category'));
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -87,12 +84,9 @@ class CategoryController extends Controller
             'slug'=> Str::slug($request->name),
             'author_id'=> Auth::user()->id,
         ];
-        if ($request->file('thumbnail')) {
-            $imagethumbnail = $request->file('thumbnail');
-            $extension = $imagethumbnail->getClientOriginalExtension();
-            $thumbnailname = Str::uuid() . '.' . $extension;
-            Image::make($imagethumbnail)->save('uploads/category/' . $thumbnailname);
-            $data['thumbnail'] = $thumbnailname;
+        if($request->file('thumbnail')){
+            $file_name = $request->file('thumbnail')->store('portfolio/thumbnail');
+            $data['thumbnail'] = $file_name;
         }
 
 
@@ -106,7 +100,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        Category::where('id', $id)->delete();
+        $category = Category::findOrFail($id);
+        Storage::disk('public')->delete('portfolio/thumbnail' . $category->image);
+        $category->delete();
         return redirect()->route('category.index');
     }
 }

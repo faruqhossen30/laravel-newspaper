@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Ajax;
 
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Product\SubCategory;
+use App\Models\Admin\Category\SubCategory;
 use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller

@@ -28,8 +28,5 @@ class Blog extends Model
     {
         return $this->belongsToMany(Category::class, 'blog_categories');
     }
-    public function softwares()
-    {
-        return $this->belongsToMany(Software::class, 'blog_software');
-    }
+
 }

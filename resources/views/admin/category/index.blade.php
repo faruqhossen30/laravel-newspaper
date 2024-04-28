@@ -1,14 +1,14 @@
 @extends('admin.layouts.app')
 @section('breadcrumb')
-<div class="flex justify-between">
-    <x-breadcrumb pageone="Category" />
-    <x-button.button-plus route="{{route('category.create')}}" title="Create Category" />
-</div>
+    <div class="flex justify-between">
+        <x-breadcrumb pageone="Category" />
+        <x-button.button-plus route="{{ route('category.create') }}" title="Create Category" />
+    </div>
 @endsection
 @section('content')
-<div class="flex flex-row-reverse py-2">
+    <div class="flex flex-row-reverse py-2">
 
-</div>
+    </div>
     <div class="bg-white dark:bg-transparent ">
         <div class="flex flex-col">
             <div class="-m-1.5 overflow-x-auto">
@@ -22,6 +22,9 @@
                                         S.N</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-gray-400">
+                                        photo</th>
+                                    <th scope="col"
+                                        class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-gray-400">
                                         Name</th>
                                     <th scope="col"
                                         class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-gray-400">
@@ -33,25 +36,36 @@
                                     <tr>
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            {{$categories->firstItem() + $loop->index}}</td>
+                                            {{ $categories->firstItem() + $loop->index }}
+                                        </td>
+
+                                        <td
+                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                                            <img src="{{ asset('storage/' . $category->thumbnail) }}"
+                                                class="h-6 w-auto" alt="">
+                                        </td>
+
                                         <td
                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
-                                            {{$category->name}}
+                                            {{ $category->name }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
 
-                                            <x-table.crudactionbutton route="category" :id="$category->id"/>
+                                            <x-table.crudactionbutton route="category" :id="$category->id" />
                                         </td>
                                     </tr>
                                 @empty
-                                    <p>No Categoy found.</p>
+                                    <td colspan="3"
+                                        class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-800 dark:text-gray-200">
+                                        Category is empty.
+                                    </td>
                                 @endforelse
 
                             </tbody>
                         </table>
                     </div>
                     <div class="py-4">
-                        {{$categories->links()}}
+                        {{ $categories->links() }}
                     </div>
                 </div>
             </div>

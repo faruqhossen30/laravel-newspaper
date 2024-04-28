@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin\Blog;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Blog\BlogCategory;
 use App\Models\Admin\Blog\BlogSoftware;
-use App\Models\Admin\Blog\Software;
-use App\Models\Admin\Product\Category;
+
+use App\Models\Admin\Category\Category;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -31,8 +31,8 @@ class BlogController extends Controller
     public function create()
     {
         $categories = Category::get();
-        $softwares  = Software::get();
-        return view('admin.blog.blog.create', compact('categories','softwares'));
+
+        return view('admin.blog.blog.create', compact('categories'));
     }
 
     /**

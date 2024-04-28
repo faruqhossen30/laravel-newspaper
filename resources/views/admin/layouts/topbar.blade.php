@@ -18,9 +18,9 @@
                     </svg>
                 </button>
                 <a href="{{ route('dashboard') }}" class="flex items-center ml-2 md:mr-24">
-                    <img src="https://flowbite-admin-dashboard.vercel.app/images/users/joseph-mcfall.png" class="h-12 mr-3 rounded-full" alt="Agency" />
+                    <img src="https://flowbite.com/images/logo.svg" class="h-12 mr-3 rounded-full" alt="Agency" />
                     <span
-                        class="self-center text-xl font-semibold text-gray-500 uppercase sm:text-2xl whitespace-nowrap dark:text-gray-200">Agency</span>
+                        class="self-center text-xl font-semibold text-gray-500 uppercase sm:text-2xl whitespace-nowrap dark:text-gray-200">NewsPaper</span>
                 </a>
                 <form action="#" method="GET" class="hidden lg:block lg:pl-3.5">
                     <label for="topbar-search" class="sr-only">Search</label>
