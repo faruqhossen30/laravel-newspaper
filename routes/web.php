@@ -23,15 +23,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomepageController::class, 'index'])->name('homepage');
-Route::get('about',[AboutController::class,'index'])->name('aboutpage');
-Route::get('price', [PricepageController::class, 'index'])->name('pricepage');
+//
+// Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+// Route::get('about',[AboutController::class,'index'])->name('aboutpage');
+// Route::get('price', [PricepageController::class, 'index'])->name('pricepage');
 // Route::get('blog', [BlogComtroller::class, 'index'])->name('blogpage');
-Route::get('terms', [TearmsController::class, 'index'])->name('termspage');
-Route::get('articles',[ArticlesController::class,'index'])->name('articlespage');
-Route::get('faq',[FaqController::class,'index'])->name('faqpage');
-Route::get('contact',[ContuctController::class,'index'])->name('contactpage');
+// Route::get('terms', [TearmsController::class, 'index'])->name('termspage');
+// Route::get('articles',[ArticlesController::class,'index'])->name('articlespage');
+// Route::get('faq',[FaqController::class,'index'])->name('faqpage');
+// Route::get('contact',[ContuctController::class,'index'])->name('contactpage');
 
+Route::get('/', [HomepageController::class, 'index'])->name('homepage');
 Route::get('/test', function () {
     return view('test');
 });
