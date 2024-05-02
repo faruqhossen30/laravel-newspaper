@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('website_settings', function (Blueprint $table) {
             $table->id();
             $table->string('site_title')->nullable();
+            $table->string('info')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('banner')->nullable();
+            $table->string('tag')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->string('telephone_no')->nullable();
@@ -28,8 +32,7 @@ return new class extends Migration
             $table->string('linkedin_link')->nullable();
             $table->string('youtube_link')->nullable();
             $table->string('intro_video_link')->nullable();
-            $table->string('info')->nullable();
-            $table->string('logo')->nullable();
+
             $table->timestamps();
         });
     }

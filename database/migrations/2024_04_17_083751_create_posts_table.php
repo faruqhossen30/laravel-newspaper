@@ -23,6 +23,7 @@ return new class extends Migration
             $table->longText('meta_description')->nullable();
             $table->string('keyword')->nullable();
             // Location Section
+
             $table->unsignedBigInteger('division_id')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();
             $table->unsignedBigInteger('upazila_id')->nullable();

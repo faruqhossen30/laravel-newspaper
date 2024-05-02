@@ -11,6 +11,8 @@ class WebsiteSetting extends Model
 
     protected $fillable = [
         'site_title',
+        'tag',
+        'banner',
         'working_time',
         'working_day',
         'address',

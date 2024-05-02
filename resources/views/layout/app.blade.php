@@ -77,7 +77,9 @@
     <!-----footer start------->
     @include('layout.footer')
     <!-----footer end -------->
-    <script src="./flowbite.min.js"></script>
+    <script src="                            /
+
+flowbite.min.js"></script>
 </body>
 
 </html>

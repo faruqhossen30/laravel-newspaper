@@ -11,15 +11,31 @@ export default {
     ],
 
     theme: {
+        container: {
+            screens: {
+                '2xl': '1280px'
+            }
+        },
         extend: {
+            typography: {
+                DEFAULT: {
+                    css: {
+                        maxWidth: '100%', // add required value here
+                    }
+                }
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                'brand': '#02A750',
+                'brand': '#FF003A',
+            },
+            width: {
+                'cal30': 'calc(100% - 30px) !important',
+                'cal40': 'calc(100% - 40px) !important',
             },
         },
     },
 
-    plugins: [forms, require('flowbite/plugin')],
+    plugins: [forms, require('flowbite/plugin'), require('@tailwindcss/typography')],
 };

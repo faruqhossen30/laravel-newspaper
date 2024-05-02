@@ -5,35 +5,28 @@ namespace App\Http\Controllers\Admin\Setting;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Setting\WebsiteSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Image ;
+use Image;
+
 class WebsiteSettingController extends Controller
 {
-    public function websitesetting(){
+    public function websitesetting()
+    {
 
         $site = websitesetting::first();
         // return  $site;
-        return view('admin.setting.website-setting',compact('site'));
+        return view('admin.setting.website-setting', compact('site'));
     }
 
 
-    public function websitestoresetting(Request $request){
+    public function websitestoresetting(Request $request ,$id)
+    {
 
 
-
-        $thumbnailname = null;
-        if ($request->file('logo')) {
-            $imagethumbnail = $request->file('logo');
-            $extension = $imagethumbnail->getClientOriginalExtension();
-            $thumbnailname = Str::uuid() . '.' . $extension;
-            $request->file('logo')->move(public_path('uploads/logo/'), $thumbnailname);
-            // $data['logo'] = $thumbnailname;
-        }
-
-        WebsiteSetting::updateOrInsert([
-            'id'=>1
-        ],[
+        $data = [
             'site_title'          => $request->site_title,
+            'tag'                 => $request->tag,
             'working_time'        => $request->working_time,
             'working_day'         => $request->working_day,
             'address'             => $request->address,
@@ -47,9 +40,22 @@ class WebsiteSettingController extends Controller
             'linkedin_link'       => $request->linkedin_link,
             'youtube_link'        => $request->youtube_link,
             'intro_video_link'    => $request->intro_video_link,
-            'logo'                => $thumbnailname,
             'info'                => $request->info,
-        ]);
+
+        ];
+
+            if($request->file('logo')  ){
+                $file_name = $request->file('logo')->store('/setting/logo');
+                $data['logo'] = $file_name;
+            }
+
+      WebsiteSetting::updateOrInsert([
+            'id' => 1
+        ], $data);
+
+
+        // return    $site = websitesetting::first();
+
 
         return redirect()->route('website.setting');
     }

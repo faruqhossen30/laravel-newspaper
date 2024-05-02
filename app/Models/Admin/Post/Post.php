@@ -22,8 +22,6 @@ class Post extends Model
         'visibility',
         'keyword',
         'status',
-        'category_id',
-        'sub_category_id',
         'division_id',
         'district_id',
         'upazila_id',

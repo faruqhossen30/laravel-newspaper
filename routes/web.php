@@ -3,12 +3,14 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\BlogComtroller;
+use App\Http\Controllers\CategoryPostController;
 use App\Http\Controllers\ConditionController;
 use App\Http\Controllers\ContuctController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PricepageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SinglapostController;
 use App\Http\Controllers\TearmsController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +36,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('contact',[ContuctController::class,'index'])->name('contactpage');
 
 Route::get('/', [HomepageController::class, 'index'])->name('homepage');
+Route::get('/post/{id}',[SinglapostController::class,'singlepost'])->name('single.post');
+Route::get('/category/post/{id}',[CategoryPostController::class,'categorypost'])->name('category.post');
 Route::get('/test', function () {
     return view('test');
 });

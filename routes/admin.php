@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Ads\AdsControllre;
 use App\Http\Controllers\Admin\Ajax\AjaxCategoryController;
 use App\Http\Controllers\Admin\Ajax\AjaxSubCategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -30,6 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('user',               UserController::class);
     Route::resource('post',               PostController::class);
     Route::resource('vot',                VotController::class);
+    Route::resource('ads',                AdsControllre::class);
 
     // Ajax Calling
     // Route::get('ajax/subcategory/{id}', [AjaxSubCategoryController::class, 'subcategoryByCategoryId']);
@@ -40,6 +42,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/site-setting', [SiteSettingController::class, 'sitesetting'])->name('sitesetting');
         Route::get('/chat-section', [ChatSectionController::class, 'chatsection'])->name('chatsection');
         Route::get('/website-setting', [WebsiteSettingController::class, 'websitesetting'])->name('website.setting');
-        Route::post('/website-setting', [WebsiteSettingController::class, 'websitestoresetting'])->name('website.setting.store');
+        Route::post('/website-setting/{id}', [WebsiteSettingController::class, 'websitestoresetting'])->name('website.setting.store');
     });
 });
